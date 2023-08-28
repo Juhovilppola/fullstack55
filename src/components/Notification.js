@@ -1,23 +1,23 @@
 import './index.css'
 
 const Notification = ({ message }) => {
-    if (message === null) {
-      return null
-    }
-    if(message.error) {
-  
+  if (message === null) {
+    return null
+  }
+  if(message.error) {
+
     return (
       <div className="error">
         {message.message}
       </div>
     )
-    } else {
-        return(
-        <div className="blogerror">
+  } else {
+    return(
+      <div className="blogerror">
         {message.message}
-        </div>
-        )
-    }
+      </div>
+    )
   }
-  
-  export default Notification
+}
+
+export default Notification
