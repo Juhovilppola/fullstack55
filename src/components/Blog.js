@@ -31,12 +31,12 @@ const Blog = ({ blog, toggleView, view, username, addLike, removeBlog }) => {
 
   } else if (blog.id === view) {
     return(
-      <div style={blogStyle}>
+      <div style={blogStyle} className="blog">
         <div>
           {blog.title} {blog.author}
           <button onClick={toggleView}>hide</button>
         </div>
-        <p>{blog.url}</p>{blog.url}
+        <p>{blog.url}</p>
         <p>likes {blog.likes} <button onClick={addLike}>like</button>
         </p>
         <p>
@@ -49,13 +49,11 @@ const Blog = ({ blog, toggleView, view, username, addLike, removeBlog }) => {
 
 
     return (
-      <div style={blogStyle}>
-        <div>
-          {blog.title} {blog.author}
-          <button onClick={toggleView}>view</button>
-        </div>
+      <li style={blogStyle} className="blog">
+        {blog.title} {blog.author}
+        <button onClick={toggleView}>view</button>
 
-      </div>
+      </li>
 
     )
   }

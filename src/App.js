@@ -174,6 +174,7 @@ const App = () => {
         <div>
           username
           <input
+            id='username'
             type="text"
             value={username}
             name="Username"
@@ -183,13 +184,14 @@ const App = () => {
         <div>
           password
           <input
+            id='password'
             type="password"
             value={password}
             name="Password"
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button type="submit">login</button>
+        <button id="login-button" type="submit">login</button>
       </form>
     </div>
   )
@@ -204,6 +206,7 @@ const App = () => {
     blogService
       .update(id, blog).then(returnedBlog => {
         console.log(returnedBlog)
+        returnedBlog.user = user
         setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
       })
   }
@@ -216,7 +219,23 @@ const App = () => {
 
       blogService
         .deleteBlog(id)
+      const errorObj = {
+        message: 'a blog deleted',
+        error: false
+      }
+      setErrorMessage(errorObj)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     }
+    const errorObj = {
+      message: 'a blog deleted',
+      error: false
+    }
+    setErrorMessage(errorObj)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
 
     /*
     console.log('ennen')
@@ -258,13 +277,13 @@ const App = () => {
 
       {user === null ?
         loginForm() :
-        <div>
+        <ul>
           <p>{user.name} logged in
             <button onClick={logOut}>logout</button></p>
 
           {loggedIn()}
 
-        </div>
+        </ul>
       }
     </div>
   )
